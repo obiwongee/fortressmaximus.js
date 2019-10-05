@@ -48,7 +48,7 @@ getLink = function(cardName, card)
     var image2 = card.image2 || null;
 
     var link = $('<a>', {
-        text: cardName,
+        text: cardName.ucwords(),
         class: "preview",
         href: href,
         "data-image": image1,
