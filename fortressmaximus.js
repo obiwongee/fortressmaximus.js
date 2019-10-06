@@ -19,11 +19,12 @@ $(document).ready(function() {
             map[card.name.toLowerCase()] = {
                 slug: card.slug,
                 image: card.image,
-                image2: card.image2
+                image2: card.image2,
+                image3: card.image3
             };
         }
 
-        $("body").html($("body").html().replace(/\[\[([A-Za-z\' ]*)\]\]/g, (m, $1) => generateLinks(m, $1, map)));
+        $("body").html($("body").html().replace(/\[\[([A-Za-z\-\' ]*)\]\]/g, (m, $1) => generateLinks(m, $1, map)));
 
         imagePreview();
     });
@@ -46,13 +47,15 @@ getLink = function(cardName, card)
 
     var image1 = card.image;
     var image2 = card.image2 || null;
+    var image3 = card.image3 || null;
 
     var link = $('<a>', {
         text: cardName.ucwords(),
         class: "preview",
         href: href,
         "data-image": image1,
-        "data-image2": image2
+        "data-image2": image2,
+        "data-image3": image3
     });
 
     return link[0].outerHTML;
@@ -65,7 +68,7 @@ imagePreview = function()
 		this.title = "";
         var c = (this.t != "") ? "<br/>" + this.t : "";
 
-        var preview = $("<p>", {
+        var preview = $("<div>", {
             id: "preview"
         });
 
@@ -73,6 +76,7 @@ imagePreview = function()
             var image = $("<img>", {
                 src: $(this).data("image")
             });
+            image.css('height', '300px');
             preview.append(image);
         }
 
@@ -80,15 +84,31 @@ imagePreview = function()
             var image = $("<img>", {
                 src: $(this).data("image2")
             });
+            image.css('height', '300px');
             preview.append(image);
         }
 
-        $(this).append(preview);
-		$("#preview")
-			.css("top",(e.pageY + 10) + "px")
-            .css("left",(e.pageX) + "px")
+        if ($(this).data("image3") !== null) {
+            var image = $("<img>", {
+                src: $(this).data("image3")
+            });
+            image.css('height', '300px');
+            preview.append(image);
+        }
+
+        var objLeft = $(this).offset().left;
+        var objTop = $(this).offset().top;
+        var objCenterX = objLeft + $(this).width() / 2;
+        var objCenterY = objTop + $(this).height() / 2;
+
+		preview
+			.css("top", objCenterY + 20)
+            .css("left", objCenterX - 50)
             .css("position", "absolute")
-			.fadeIn("fast");
+            .css("z-index", 100)
+            .fadeIn("fast");
+
+        $('body').append(preview);
     },
 	function(){
 		this.title = this.t;
