@@ -9,7 +9,7 @@ fortressmaximus.js require the JQuery Javascript library which can be found here
 `<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>`
 
 Then simply add the fortressmaximus.js script after
-`<script src='https://fortressmaximus.io/tools/fortressmaximusjs/0.1/fortressmaximus.min.js' integrity="sha384-HCxFkutbEFTxMUpDprGK1VKBnYqI9fFotPvmZN9H9z1HNGzKoFX5Xryih6qSjsXp" crossorigin="anonymous"></script>`
+`<script src='https://fortressmaximus.io/tools/fortressmaximusjs/0.1/fortressmaximus.min.js' integrity="sha256-q4yte4WoH1jYdKqcT4ckn1Ftxl9fCwBIw3dr+dC2nUU=" crossorigin="anonymous"></script>`
 
 Finally, on your web page, the script will fetch any card inbween `[[]]` brackets
 eg.
